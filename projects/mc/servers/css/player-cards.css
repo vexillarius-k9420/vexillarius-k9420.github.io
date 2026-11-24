@@ -40,6 +40,9 @@
     font-size: 12px;
     transition: transform 0.2s;
 }
+.player-header img {
+    border-radius: 15%;
+}
 
 .player-card[open] .player-header::after {
     transform: rotate(180deg);
