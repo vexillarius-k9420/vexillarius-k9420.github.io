@@ -1,65 +1,53 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Home</title>
-
+    <meta charset="UTF-8">
+    <title>V-Home</title>
+    <link rel="icon" href="images/vex_logo.jpg" type="image/png" sizes="32x32">
     <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-    <header class="header">
-        <div class="header__inner container">
-            <a href="/" class="header__logo" aria-label="Home">
-            <img src="images/vex_logo.jpg" class="header__logo-icon" alt="" width="28" height="28">
-            <span>Home</span>
-            </a>
 
-            <nav class="nav" aria-label="Основная навигация">
-                <a href="/members" class="nav__link">Участники</a>
-                <a href="/resources" class="nav__link">Сезоны</a>
-                <a href="/useful" class="nav__link">Полезное</a>
-                <a href="/links" class="nav__link">Ссылки</a>
-                <a href="/news" class="nav__link">Новости</a>
-                <a href="/gallery" class="nav__link">Галерея</a>
-                <a href="/feed" class="nav__link">Контент</a>
-            </nav>
-            <div class="header__inner container"></div>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+</head>
+
+<body class="backgrounds">
+<header class="header">
+    <div class="header_inner container">
+        <a class="header_logo" aria-label="Frost and Gears">
+            <img src="images/vex_logo.jpg" class="header_logo-icon" alt="logo" width="28" height="28">
+            <span>Home</span>
+        </a>
+        <nav class="nav" aria-label="Основная навигация">
+            <a href="#info" class="nav_link">Информация</a>
+            <a href="#projects" class="nav_link">Проекты</a>
+        </nav>
+        <div class="header_inner container"></div>
+    </div>
+</header>
+<main class="main">
+    <div class="side_indent"></div>
+    <div style="width: 100%">
+
+        <div id="info" class="panel">
+            <h2><img src="../../../../images/svg-icons/extension_icon6.svg"height="32" width="32"> Информация</h2>
+            <div class="separator"></div>
+            <p>Это мой сайт, даа...</p>
         </div>
-    </header>
-    <main>
-        <div class="home-hero home-hero--fx-embers">
-            <h1>Home</h1>
+        <div id="projects" class="panel">
+            <h2><img src="../../../../images/svg-icons/extension_icon13.svg"height="32" width="32"> Проекты</h2>
+            <div class="separator"></div>
+            <div class="flex-autoprojects/mc/servers/frost-and-gears">
+                <a href="projects/mc/servers/frost-and-gears" class="link">
+                    <img src="projects/mc/servers/frost-and-gears/images/ice-gear-ico.png" height="65" width="65">
+                    <div><h3>Frost and Gears</h3>Крутецкий майнкрафт сервер с модами!!!<br>Можно заходить!</div>
+                </a>
+                <br>Итд, потом остальное добавлю......
+            </div>
         </div>
-        
-        <div class="container home-main">
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-            <h1>сайт работает на GitHub Pages.</h1>
-        </div>
-    </main>
+
+    </div>
+    <div class="side_indent"></div>
+</main>
 </body>
 </html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Frost and Gears</title>
+    <link rel="icon" href="images/ice-gear-ico.png" type="image/png" sizes="32x32">
+
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="../css/player-cards.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+</head>
+
+<style>
+    :root {
+        --surface-2: rgb(72, 143, 140, 0.1);
+        --checkers: url(images/panorama.png);
+    }
+    .panorama {
+        background: #7A89B1 var(--checkers);
+        background-attachment: fixed;
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat-x;
+        animation: xscroll 160s linear infinite reverse;
+    }
+</style>
+
+<body class="panorama">
+    <header class="header">
+        <div class="header_inner container">
+            <a class="header_logo" aria-label="Frost and Gears">
+            <img src="images/ice-gear-ico.png" class="header_logo-icon" alt="logo" width="28" height="28">
+            <span>Frost and Gears</span>
+            </a>
+
+            <nav class="nav" aria-label="Основная навигация">
+                <a href="#server-status" class="nav_link">Статус</a>
+                <a href="#description" class="nav_link">Описание</a>
+                <a href="#info" class="nav_link">Информация</a>
+                <a href="#mods" class="nav_link">Сборка</a>
+                <a href="#participants" class="nav_link">Участники</a>
+            </nav>
+            <div class="header_inner container"></div>
+        </div>
+    </header>
+    <main class="main">
+        <div class="side_indent"></div>
+        <div id="server-status" style="width: 100%">
+            <div class="panel" style="display: flex; margin: 50px 23% 50px 23%;">
+                <img style="margin: auto 0;" src="images/serverico.png" alt="logo" width="135" height="135">
+                <div style="width: 100%;">
+                    <img style="max-width: 100%; height: auto; display: block; margin: 0 auto 12px auto;" src="images/twic-title.png" height="65" width="360">
+                    <div id="mc-status" style="padding-left: 16px; font-size: 110%; width: 100%;">
+                        <p><strong>Загрузка статуса сервера...</strong></p>
+                        <script>
+                            const statusBlock = document.getElementById("mc-status");
+
+                            async function checkServerStatus() {
+                                try {
+                                    const response = await fetch(`https://api.mcsrvstat.us/2/51.89.6.162:11358`);
+                                    const data = await response.json();
+
+                                    if (data.online) {
+                                        // список ников (если сервер их отдаёт и кто-то есть в сети)
+                                        let playersHtml = "";
+                                        if (data.players.online > 0) {
+                                            if (data.players.list && data.players.list.length > 0) {
+                                                const names = data.players.list.map((name) => "<p><strong>"+name+"</strong></p>").join(""); //["Vexillarius_K","Noxital","roti_official","Puro_OwO"].map((name) => "<p>"+name+"</p>").join("");
+                                                playersHtml = names;
+                                            } else {
+                                                playersHtml = `<p><em>?Ой</em></p>`;
+                                            }
+                                        }
+                                        // вся информация
+                                        statusBlock.innerHTML = `
+                                              <p>Игроков онлайн ${data.players.online} / ${data.players.max}:</p>
+                                              <div style="display: grid; grid-template-columns: 1fr 1fr;">${playersHtml}</div>
+                                            `;
+                                    } else {
+                                        statusBlock.innerHTML = `<p><strong>Сервер спит</strong> (никто не играет)<br>Заходи 👀</p>`;
+                                    }
+                                } catch (error) {
+                                    statusBlock.innerHTML = `<p>⚠️ Не удалось получить данные о сервере</p>`;
+                                }
+                            }
+                            checkServerStatus();
+                        </script>
+                    </div>
+                </div>
+            </div>
+        <div id="description" class="panel">
+            <h2><img src="../../../../images/svg-icons/extension_icon2.svg"height="32" width="32"> Описание</h2>
+            <div class="separator"></div>
+            <p>Скоро заполню</p>
+        </div>
+        <div id="info" class="panel">
+            <h2><img src="../../../../images/svg-icons/extension_icon6.svg"height="32" width="32"> Информация</h2>
+            <div class="separator"></div>
+            <p>Скоро заполню</p>
+        </div>
+        <div id="mods" class="panel">
+            <h2><img src="../../../../images/svg-icons/extension_icon14.svg"height="32" width="32"> Сборка модов сервера (основные)</h2>
+            <div class="separator"></div>
+            <a href="https://modrinth.com/mod/aquamirae" class="link"><img src="https://cdn.modrinth.com/data/k23mNPhZ/e33ffb391c8c05f1ea99b09d00d5369e0ac44ae7.png" height="65" width="65"><div><h3>Aquamirae</h3>Расширяет мир, добавляя замерзший океанический биом – Ледяной лабиринт наверху<br>и зловещее Кладбище Кораблей внизу.</div></a>
+            <div class="sub_panel">
+                <div>
+                    <a href="https://modrinth.com/mod/create" class="link"><img src="https://cdn.modrinth.com/data/LNytGWDc/45c6a706e0e67669d3004f80eec443331fb33369.png" height="65" width="65"><div><h3>Create</h3>Мод, предлагающий множество инструментов и блоков для строительства, декорирования и автоматизации эстетических процессов.</div></a>
+                    <a href="https://modrinth.com/mod/create-aeronautics" class="link"><img src="https://cdn.modrinth.com/data/oWaK0Q19/f66b5589924884ffd81acb27f3ccb775867a962e.png" height="65" width="65"><div><h3>Create Aeronautics</h3>Набор модификаций, расширяющих возможности Create и добавляющих в него физические механизмы.</div></a>
+                    <a href="https://modrinth.com/mod/create-big-cannons" class="link"><img src="https://cdn.modrinth.com/data/GWp4jCJj/e9118cf3a5d16de446df6f0f1a2ad093b414274e.png" height="65" width="65"><div><h3>Create Big Cannons</h3>Дополнение для Create, посвященное созданию больших пушек, совместимых с Create.</div></a>
+                    <a href="https://www.curseforge.com/minecraft/mc-mods/create-fluid" class="link"><img src="https://media.forgecdn.net/avatars/thumbnails/1440/955/64/64/638934218963403140.png" height="65" width="65"><div><h3>Create: Fluid</h3>Предназначен для улучшения системы логистики и обработки жидкостей в моде Create.</div></a>
+                </div>
+            </div>
+            <div>
+                <a href="https://modrinth.com/mod/creature-feature" class="link"><img src="https://cdn.modrinth.com/data/7nEkcq0F/867e7ccd3797dfcfd8ea4d7dae15e4374e9c199f.png" height="65" width="65"><div><h3>Creature Feature</h3>Добавляет 28 уникальных враждебных существ</div></a>
+                <a href="https://modrinth.com/mod/farmers-delight" class="link"><img src="https://cdn.modrinth.com/data/R2OftAxM/8e7aa38ab94d94bb0a2894a218b69beb49002b34.png" height="65" width="65"><div><h3>Farmer's Delight</h3>Расширяет возможности фермерства и кулинарии.</div></a>
+            </div>
+            <div class="sub_panel">
+                <a href="https://modrinth.com/plugin/simple-voice-chat" class="link"><img src="https://cdn.modrinth.com/data/9eGKb6K1/icon.png" height="65" width="65"><div><h3>Simple Voice Chat</h3>Голосовой чат для Minecraft, активируемый на близком расстоянии.</div></a>
+                <a href="https://modrinth.com/plugin/voicemessages" class="link"><img src="https://cdn.modrinth.com/data/WWLeFuHa/755d0a7e838752c525c19e906c91e8d34c7ef60e.png" height="65" width="65"><div><h3>Voice Messages</h3>Добавляет голосовые сообщения.</div></a>
+            </div>
+            <div>
+                <a href="https://modrinth.com/datapack/terralith" class="link"><img src="https://cdn.modrinth.com/data/8oi3bsk5/34c751cc804839ed3c1d9f21dfd53d98368fedfc.png" height="65" width="65"><div><h3>Terralith</h3>Добавляет более 95 совершенно новых биомов, а также обновляет почти все стандартные биомы, добавляя новые и улучшенные элементы.</div></a>
+                <a href="https://modrinth.com/plugin/custom-player-models" class="link"><img src="https://cdn.modrinth.com/data/h1E7sQNL/icon.png" height="65" width="65"><div><h3>Customizable Player Models (CPM)</h3>Создайте собственный аватар с помощью редактора.</div></a>
+            </div>
+            <a href="https://modrinth.com/mod/simple-chat-stickers" class="link"><img src="https://cdn.modrinth.com/data/WqlJo4qN/17661e0dd629a3fd823f7c30f1933f76792a2bb3.jpeg" height="65" width="65"><div><h3>Simple chat stickers</h3>Добавляет стикеры в внутриигровой чат.</div></a>
+            <a href="https://ru.wikipedia.org/wiki/%D0%A7%D0%B5%D1%85%D0%BE%D0%B2%D1%81%D0%BA%D0%BE%D0%B5_%D1%80%D1%83%D0%B6%D1%8C%D1%91" class="link blur"><img src="https://w7.pngwing.com/pngs/237/602/png-transparent-spoiler-graphy-youtube-youtube-television-text-rectangle-thumbnail.png" height="65" width="65"><div><h3>###### ###### #######</h3>Что это?</div></a>
+        </div>
+        <div id="participants" class="panel" style="margin-bottom: 50px">
+            <h2>Участники</h2>
+            <div class="separator"></div>
+            <div class="flex-auto">
+                <a href="#info-vex_k" class="link"><img src="../../../../images/svg-icons/extension_icon1.svg"height="22" width="22"> Vexillarius_K</a>
+                <a href="#info-noxital" class="link"><img src="../../../../images/svg-icons/extension_icon1.svg"height="22" width="22"> Noxital</a>
+                <a href="#info-roti" class="link"><img src="../../../../images/svg-icons/extension_icon1.svg"height="22" width="22"> roti_official</a>
+                <a href="#info-puro" class="link"><img src="../../../../images/svg-icons/extension_icon1.svg"height="22" width="22"> Puro_OwO</a>
+            </div>
+            <div>
+                <details id="info-vex_k" class="player-card" data-username="Vexillarius_K" data-skin-url="skins/vex-old-skin.png">
+                    <summary class="player-header">
+                        <span></span><span>Vexillarius_K</span>
+                    </summary>
+                    <div class="separator"></div>
+                    <div class="player-content">
+                        <div class="skin-box"><canvas></canvas></div>
+                        <div class="player-info">
+                            <h3>Vexillarius_K</h3>
+                            <p>Загадочный, самовлюблённый, манипулятор-кукловод, жирный, эгоист и ещё сталкер.</p>
+                            <p>А, ну и, админ сервера.</p>
+                            <br>
+                            <h4>О себе:</h4>
+                            <p>Я самый добрый, лучший, красивый, харизматичный, уверенный, весёлый, заботливый, искренний, дружелюбный, обаятельный, умный, талантливый, интересный, позитивный, сильный, смелый, надёжный, честный, верный, спокойный, терпеливый, внимательный, щедрый, общительный, энергичный, жизнерадостный, уникальный, незаменимый, целеустремлённый, амбициозный, мудрый, воспитанный, уважительный, понимающий, отзывчивый, романтичный, привлекательный, стильный, достойный, великодушный, справедливый, открытый, смешной, прикольный, душевный, милый, нежный, добродушный, красивейший, шикарный, великолепный, идеальный, легендарный, неповторимый, уверенный, решительный, мужественный, терпимый, доброжелательный, преданный, коммуникабельный, позитивный, жизнерадостный, душевный, искренний, рассудительный, сообразительный, креативный, находчивый, самостоятельный, независимый, свободный, харизматичный, обаятельный, артистичный, весёлый, яркий, заметный, популярный, любимый, желанный, ценный, достойный, успешный, перспективный, трудолюбивый, старательный, организованный, дисциплинированный, ответственный, благородный, великодушный, милосердный, сочувствующий, понимающий, заботливый, ласковый, приветливый, приятный, душевный, позитивный, оптимистичный, терпеливый, уравновешенный, спокойный, рассудительный, внимательный, наблюдательный, умелый, способный, одарённый, гениальный, выдающийся, великолепный, превосходный, замечательный, потрясающий, сногсшибательный, офигенный, крутой, классный, топовый, мощный, легендарный, непобедимый, бесстрашный, стойкий, волевой, решительный, настойчивый, упорный, амбициозный, целеустремлённый, уверенный, достойный, незаменимый, неповторимый, единственный, особенный, уникальный, прекрасный, обалденный, восхитительный, очаровательный, привлекательный, эстетичный, стильный, модный, ухоженный, опрятный, аккуратный, интеллигентный, грамотный, эрудированный, начитанный, любознательный, рассудительный, мудрый, опытный, сообразительный, логичный, рациональный, изобретательный, креативный, талантливый, гениальный, лучший, добрый, красивый, харизматичный</p>
+                        </div>
+                    </div>
+                </details>
+                <details id="info-noxital" class="player-card" data-username="Noxital">
+                    <summary class="player-header">
+                        <img src="https://minotar.net/helm/Noxital/30.png" height="30" width="30"><span>Noxital</span>
+                    </summary>
+                    <div class="separator"></div>
+                    <div class="player-content">
+                        <div class="skin-box"><canvas></canvas></div>
+                        <div class="player-info">
+                            <h3>Noxital</h3>
+                            <p><3</p>
+                            <br>
+                            <h4>О себе:</h4>
+                            <p>пусто</p>
+                        </div>
+                    </div>
+                </details>
+                <details id="info-roti" class="player-card" data-username="roti_official" data-skin-url="skins/tlauncher_roti_official.png">
+                    <summary class="player-header">
+                        <span></span><span>roti_official</span>
+                    </summary>
+                    <div class="separator"></div>
+                    <div class="player-content">
+                        <div class="skin-box"><canvas></canvas></div>
+                        <div class="player-info">
+                            <h3>roti_official</h3>
+                            <br>
+                            <h4>О себе:</h4>
+                            <p>пусто</p>
+                        </div>
+                    </div>
+                </details>
+                <details id="info-puro" class="player-card" data-username="Puro_OwO">
+                    <summary class="player-header">
+                        <img src="https://minotar.net/helm/Puro_OwO/30.png" height="30" width="30"><span>Puro_OwO</span>
+                    </summary>
+                    <div class="separator"></div>
+                    <div class="player-content">
+                        <div class="skin-box"><canvas></canvas></div>
+                        <div class="player-info">
+                            <h3>Puro_OwO</h3>
+                            <br>
+                            <h4>О себе:</h4>
+                            <p>пусто</p>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            <!-- 1. подключение библиотеки для отображения скина -->
+            <script src="https://cdn.jsdelivr.net/npm/skinview3d/bundles/skinview3d.bundle.js"></script>
+            <!-- 2. 3D-перс -->
+            <script>
+                document.querySelectorAll(".player-card").forEach((card) => {
+                    card.addEventListener("toggle", () => {
+                        if (card.open && !card.dataset.loaded) {
+                            const username = card.dataset.username;
+                            const customSkin = card.dataset.skinUrl; // Путь к локальному PNG, если указан
+                            const box = card.querySelector(".skin-box");
+                            const canvas = card.querySelector("canvas");
+
+                            // Если есть путь к PNG — берём его, иначе запрашиваем по нику
+                            const skinSource = customSkin
+                                ? customSkin
+                                : "https://" + "minotar.net" + "/skin/" + username;
+
+                            const viewer = new skinview3d.SkinViewer({
+                                canvas: canvas,
+                                width: box.clientWidth,
+                                height: box.clientHeight,
+                                skin: skinSource
+                            });
+
+                            viewer.animation = new skinview3d.IdleAnimation();
+                            viewer.autoRotate = true;
+                            viewer.autoRotateSpeed = 0.3;
+
+                            card.dataset.loaded = "true";
+                        }
+                    });
+                });
+            </script>
+        </div>
+        </div>
+        <div class="side_indent"></div>
+    </main>
+
+    <script>
+        const sections = document.querySelectorAll('div[id]');
+        const navLinks = document.querySelectorAll('.nav_link');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    // поиск ссылки ведущей на секцию и добавление active
+                    const id = entry.target.getAttribute('id');
+                    const activeLink = document.querySelector(`.nav_link[href="#${id}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                }
+            });
+        }, {
+            // когда секция в центре экрана
+            rootMargin: '-50% 0px -70% 0px'
+        });
+        sections.forEach(section => observer.observe(section));
+    </script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+.skin-box {
+    width: 200px;
+    height: 280px;
+    flex-shrink: 0;
+}
+
+.player-card {
+    background: rgba(10, 10, 10, 0.6);
+    border-radius: 16px;
+    overflow: hidden;
+    margin: 6px;
+}
+
+/* кнопка-заголовок */
+.player-header {
+    color: var(--text);
+    padding: 16px 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    list-style: none; /* убираем стандартный треугольник */
+    user-select: none;
+    transition: background var(--dur);
+}
+
+.player-header::-webkit-details-marker {
+    display: none; /* убираем треугольник */
+}
+
+.player-header:hover {
+    background: rgb(0, 0, 0, 0.6);
+}
+
+/* стрелочка справа */
+.player-header::after {
+    content: "▼";
+    font-size: 12px;
+    transition: transform 0.2s;
+}
+
+.player-card[open] .player-header::after {
+    transform: rotate(180deg);
+}
+.player-content {
+    display: flex;
+    gap: 24px;
+    padding: 6px;
+}
