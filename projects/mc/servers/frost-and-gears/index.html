@@ -251,6 +251,27 @@
         <div class="side_indent"></div>
     </main>
 
+    <!-- авто-открытие <details> -->
+    <script>
+        function openMemberFromHash() {
+            // удаление символа # из начала строки
+            const hash = window.location.hash.substring(1);
+            if (!hash) return;
+            // поиск элемента на странице с таким id
+            const target = document.getElementById(decodeURIComponent(hash));
+            // открытие <details> и переход к нему
+            if (target && target.tagName === 'DETAILS') {
+                target.open = true;
+                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+        // Запускаем при открытии страницы по ссылке
+        window.addEventListener('DOMContentLoaded', openMemberFromHash);
+        // Запускаем, если пользователь кликнул на якорную ссылку уже находясь на сайте
+        window.addEventListener('hashchange', openMemberFromHash);
+    </script>
+    <!-- подсветка якорных ссылок в нав-е -->
     <script>
         const sections = document.querySelectorAll('div[id]');
         const navLinks = document.querySelectorAll('.nav_link');
